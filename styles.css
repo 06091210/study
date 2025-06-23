@@ -1,4 +1,8 @@
-a.btn--raised {
+a.btn--yellow {
     color: #ffff00;
     text-shadow: -1px -1px 1px rgba(255, 215, 0, .1), 1px 1px 1px #ffd700;
+}
+a.btn--purple {
+    color: #800080;
+    text-shadow: -1px -1px 1px rgba(128, 0, 128, .1), 1px 1px 1px #4b0082;
 }
