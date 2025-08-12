@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>社会</title>
+  <style>
+  </style>
+</head>
+<body>
+  <h2 id="idName">正誤判定</h2>
+  <textarea id="Textarea"></textarea>
+  <button onclick="CheckAnswer()">解答</button>
+  <button onclick="Question()">次の問題</button>
+  <script>
+    const question = [];
+    const answer = [];
+    var NoQ = 0;
+    function CheckAnswer() {
+      var Value = document.getElementById("Textarea");
+      var VoA = document.getElementById("idName");
+      if (Value.value === answer[NoQ]) {
+        VoA.innerHTML = "正解";
+      } else {
+        VoA.innerHTML = "不正解";
+      }
+      NoQ += 1;
+    }
+    function Question() {
+      var Value = document.getElementById("Textarea");
+      var Q = document.getElementById("idName");
+      Value.value = ""
+      Q.innerHTML = question[NoQ];
+    }
+    Question();
+  </script>
+</body>
+</html>
