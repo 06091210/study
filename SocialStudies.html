@@ -86,13 +86,6 @@
       Value.value = ""
       Q.innerHTML = question[NoQ];
     }
-    function adjustRootFontSize() {
-      const shortSide = Math.min(window.innerWidth, window.innerHeight);
-      const fontSize = shortSide * 0.04;
-      document.documentElement.style.fontSize = fontSize + "px";
-    }
-    window.addEventListener("load", adjustRootFontSize);
-    window.addEventListener("resize", adjustRootFontSize);
     Question();
   </script>
 </body>
