@@ -4,65 +4,6 @@
   <meta charset="UTF-8">
   <title>クイズ</title>
   <link rel="apple-touch-icon" href="Icon.png">
-  <!--<style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    #menu-button {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      background: none;
-      border: none;
-      padding: 0;
-      font-size: 24px;
-      font-weight: bold;
-      z-index: 1000;
-      cursor: pointer;
-    }
-    html, body {
-      height: 100%;
-      width: 100%;
-    }
-    body {
-      display: flex;
-      flex-direction: row;
-      font-family: sans-serif;
-    }
-    #header-area {
-      width: 200px;
-      min-width: 150px;
-      background-color: #f0f0f0;
-      padding: 10px;
-      height: 100vh;
-      box-sizing: border-box;
-      margin-top: 0;
-    }
-    #viewer {
-      flex-grow: 1;
-      border: none;
-      height: 100vh;
-    }
-    h1:first-of-type {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      z-index: 10;
-      background: white;
-      border: 1px solid #ccc;
-      padding: 5px;
-      cursor: pointer;
-    }
-    h2 {
-      cursor: pointer;
-      margin: 10px 0;
-    }
-    hr {
-      margin-top: 10px;
-    }
-  </style>-->
   <style>
   * {
     margin: 0;
@@ -78,55 +19,44 @@
     display: flex;
     flex-direction: row;
   }
-
-  /* ≡ボタン */
   #menu-button {
     position: fixed;
-    top: 1vh;              /* 画面高さの割合 */
-    left: 1vw;             /* 画面幅の割合 */
+    top: 1vh;
+    left: 1vw;
     background: none;
     border: none;
     padding: 0;
-    font-size: 4vh;        /* 画面高さに比例して文字サイズ変化 */
+    font-size: 4vh;
     font-weight: bold;
     z-index: 1000;
     cursor: pointer;
   }
-
-  /* サイドバー */
   #header-area {
-    width: 20vw;           /* 画面幅の20% */
-    min-width: 120px;      /* 狭くなりすぎないように下限 */
+    width: 20vw;
+    min-width: 120px;
     background-color: #f0f0f0;
-    padding: 2vh 1vw;      /* 高さと幅に応じた余白 */
+    padding: 2vh 1vw;
     height: 100vh;
     box-sizing: border-box;
   }
-
-  /* サイドバー内の見出し */
   #header-area h2 {
     cursor: pointer;
     margin: 2vh 0;
-    font-size: 2.5vh;      /* 高さに比例 */
+    font-size: 2.5vh;
   }
-
   hr {
     margin-top: 2vh;
   }
-
-  /* iframe */
     #viewer {
       flex-grow: 1;
       border: none;
       height: 100vh;
-      padding-top: 6vh; /* ≡ボタン分の空白 */
+      padding-top: 6vh;
       box-sizing: border-box;
     }
-
-  /* スマホや超小画面対応 */
   @media (max-width: 600px) {
     #header-area {
-      width: 50vw; /* 画面幅の半分 */
+      width: 50vw;
     }
     #menu-button {
       font-size: 5vh;
@@ -140,7 +70,7 @@
 <body>
   <div id="menu-button" onclick="toggleHeader()">≡</div>
   <div id="header-area">
-    <div style="margin-top: 6vh;"><!--50px--> 
+    <div style="margin-top: 6vh;">
       <h2 onclick="loadHTML('SocialStudies.html')">社会</h2>
       <h2 onclick="loadHTML('English.html')">英語</h2>
       <hr>
