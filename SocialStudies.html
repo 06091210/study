@@ -4,13 +4,63 @@
   <meta charset="UTF-8">
   <title>社会</title>
   <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-size: 1rem;
+    }
+    .container {
+      width: calc(100% - 20px);
+      margin: 0 auto;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    textarea {
+      width: 100%;
+      font-size: 1.1rem;
+      padding: 0.8rem;
+      margin: 1rem 0;
+      border-radius: 0.5rem;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      height: 10rem;
+      resize: vertical;
+    }
+    button {
+      font-size: 1.2rem;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    #idName {
+      width: 15rem;
+      overflow-x: hidden;
+      display: block;
+      white-space: pre-wrap;
+      word-break: keep-all;
+      box-sizing: border-box;
+    }
   </style>
 </head>
 <body>
+  <div class="container">
   <h2 id="idName">正誤判定</h2>
   <textarea id="Textarea"></textarea>
   <button onclick="CheckAnswer()">解答</button>
   <button onclick="Question()">次の問題</button>
+  </div>
   <script>
     const question = [];
     const answer = [];
