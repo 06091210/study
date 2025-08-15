@@ -61,8 +61,14 @@
   <button onclick="Question()">次の問題</button>
   </div>
   <script>
-    const question = [];
-    const answer = [];
+    const question = [
+    "今から約700万年から600万年前にアフリカで現れた，現在知られている最も古い人類",
+    "今から250万年ほど前，地球が寒冷化していた時代を何と呼ぶか？"
+    ];
+    const answer = [
+    "猿人",
+    "氷河時代"
+    ];
     var NoQ = 0;
     function CheckAnswer() {
       var Value = document.getElementById("Textarea");
@@ -80,6 +86,13 @@
       Value.value = ""
       Q.innerHTML = question[NoQ];
     }
+    function adjustRootFontSize() {
+      const shortSide = Math.min(window.innerWidth, window.innerHeight);
+      const fontSize = shortSide * 0.04;
+      document.documentElement.style.fontSize = fontSize + "px";
+    }
+    window.addEventListener("load", adjustRootFontSize);
+    window.addEventListener("resize", adjustRootFontSize);
     Question();
   </script>
 </body>
