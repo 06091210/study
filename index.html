@@ -115,11 +115,13 @@
   }
 
   /* iframe */
-  #viewer {
-    flex-grow: 1;
-    border: none;
-    height: 100vh;
-  }
+    #viewer {
+      flex-grow: 1;
+      border: none;
+      height: 100vh;
+      padding-top: 6vh; /* ≡ボタン分の空白 */
+      box-sizing: border-box;
+    }
 
   /* スマホや超小画面対応 */
   @media (max-width: 600px) {
@@ -138,7 +140,7 @@
 <body>
   <div id="menu-button" onclick="toggleHeader()">≡</div>
   <div id="header-area">
-    <div style="margin-top: 50px;"> 
+    <div style="margin-top: 6vh;"><!--50px--> 
       <h2 onclick="loadHTML('SocialStudies.html')">社会</h2>
       <h2 onclick="loadHTML('English.html')">英語</h2>
       <hr>
