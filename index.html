@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>クイズ</title>
   <link rel="apple-touch-icon" href="Icon.png">
-  <style>
+  <!--<style>
     * {
       margin: 0;
       padding: 0;
@@ -62,7 +62,78 @@
     hr {
       margin-top: 10px;
     }
-  </style>
+  </style>-->
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html, body {
+    height: 100%;
+    width: 100%;
+    font-family: sans-serif;
+  }
+  body {
+    display: flex;
+    flex-direction: row;
+  }
+
+  /* ≡ボタン */
+  #menu-button {
+    position: fixed;
+    top: 1vh;              /* 画面高さの割合 */
+    left: 1vw;             /* 画面幅の割合 */
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 4vh;        /* 画面高さに比例して文字サイズ変化 */
+    font-weight: bold;
+    z-index: 1000;
+    cursor: pointer;
+  }
+
+  /* サイドバー */
+  #header-area {
+    width: 20vw;           /* 画面幅の20% */
+    min-width: 120px;      /* 狭くなりすぎないように下限 */
+    background-color: #f0f0f0;
+    padding: 2vh 1vw;      /* 高さと幅に応じた余白 */
+    height: 100vh;
+    box-sizing: border-box;
+  }
+
+  /* サイドバー内の見出し */
+  #header-area h2 {
+    cursor: pointer;
+    margin: 2vh 0;
+    font-size: 2.5vh;      /* 高さに比例 */
+  }
+
+  hr {
+    margin-top: 2vh;
+  }
+
+  /* iframe */
+  #viewer {
+    flex-grow: 1;
+    border: none;
+    height: 100vh;
+  }
+
+  /* スマホや超小画面対応 */
+  @media (max-width: 600px) {
+    #header-area {
+      width: 50vw; /* 画面幅の半分 */
+    }
+    #menu-button {
+      font-size: 5vh;
+    }
+    #header-area h2 {
+      font-size: 3vh;
+    }
+  }
+</style>
 </head>
 <body>
   <div id="menu-button" onclick="toggleHeader()">≡</div>
