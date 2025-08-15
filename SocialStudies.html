@@ -44,7 +44,7 @@ button:hover {
   background-color: #45a049;
 }*/
     html {
-  font-size: max(4vmax, 18px); /* スマホ縦画面で大きく、最低18px確保 */
+  font-size: calc(4vmin);
 }
 
 body {
@@ -64,12 +64,12 @@ body {
 }
 
 h2 {
-  margin: 0 0 1em 0;
+  margin: 0 0 1rem 0;
 }
 
 textarea {
   width: 100%;
-  font-size: 1em;
+  font-size: 1em; /* html の font-size に比例 */
   padding: 0.8em;
   margin: 1em 0;
   border-radius: 0.5em;
