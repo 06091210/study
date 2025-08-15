@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -136,5 +136,97 @@ button:hover {
     }
     Question();
   </script>
+</body>
+</html>-->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>社会</title>
+<style>
+  html {
+    font-size: 16px; /* 初期値（JSで上書き） */
+  }
+  body {
+    margin: 0;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 1rem; /* ルートフォントサイズ基準 */
+  }
+  .container {
+    width: calc(100% - 20px);
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  textarea {
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 0.8rem;
+    margin: 1rem 0;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    height: 10rem;
+    resize: vertical;
+  }
+  button {
+    font-size: 1.2rem;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2 id="idName">正誤判定</h2>
+  <textarea id="Textarea"></textarea>
+  <button onclick="CheckAnswer()">解答</button>
+  <button onclick="Question()">次の問題</button>
+</div>
+
+<script>
+  // フォントサイズ自動調整
+  function adjustFontSize() {
+    const shortSide = Math.min(window.innerWidth, window.innerHeight);
+    document.documentElement.style.fontSize = (shortSide * 0.03) + "px"; // 短辺の3%
+  }
+  window.addEventListener("resize", adjustFontSize);
+  adjustFontSize();
+
+  const question = [
+    "今から約700万年から600万年前にアフリカで現れた，現在知られている最も古い人類",
+    "今から250万年ほど前，地球が寒冷化していた時代を何と呼ぶか？"
+  ];
+  const answer = [
+    "猿人",
+    "氷河時代"
+  ];
+  let NoQ = 0;
+  function CheckAnswer() {
+    var Value = document.getElementById("Textarea");
+    var VoA = document.getElementById("idName");
+    VoA.innerHTML = (Value.value === answer[NoQ]) ? "正解" : "不正解";
+    NoQ += 1;
+  }
+  function Question() {
+    var Value = document.getElementById("Textarea");
+    var Q = document.getElementById("idName");
+    Value.value = "";
+    Q.innerHTML = question[NoQ];
+  }
+  Question();
+</script>
 </body>
 </html>
