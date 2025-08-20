@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -76,98 +76,7 @@
       <hr>
     </div>
   </div>
-  <!--<iframe id="viewer" src=""></iframe>-->
-  <!--↓追加-->
-  <div id="viewer">
-  <style>
-    html {
-  font-size: calc(4vmin);
-}
-body {
-  margin: 0;
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-.container {
-  width: calc(100% - 20px);
-  margin: 0 auto;
-  padding: 0;
-  box-sizing: border-box;
-}
-h4 {
-  margin: 0 0 1rem 0;
-}
-textarea {
-  width: 100%;
-  font-size: 1em;
-  padding: 0.8em;
-  margin: 1em 0;
-  border-radius: 0.5em;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  height: 10em;
-  resize: vertical;
-}
-button {
-  font-size: 1em;
-  padding: 0.8em 1.5em;
-  border: none;
-  border-radius: 0.5em;
-  background-color: #4CAF50;
-  color: white;
-  cursor: pointer;
-  margin-top: 1em;
-}
-button:hover {
-  background-color: #45a049;
-}
-  </style>
-  <div class="container">
-  <h4 id="idName"></h4>
-  <textarea id="Textarea"></textarea>
-  <button onclick="CheckAnswer()">解答</button>
-  <button onclick="Question()">次の問題</button>
-  </div>
-  <script>
-    
-    const check = [];
-    var NoQ = 0;
-    function CheckAnswer() {
-      var Value = document.getElementById("Textarea");
-      var VoA = document.getElementById("idName");
-      if (Value.value === answer[NoQ]) {
-        Textarea.style.display = 'none';
-        VoA.innerHTML = "正解";
-        check.push("問題："+question[NoQ]+" 正答："+answer[NoQ]+"　正誤判定：⚪︎");
-      } else {
-        Textarea.style.display = 'none';
-        VoA.innerHTML = "不正解";
-        check.push("問題："+question[NoQ]+" 正答："+answer[NoQ]+"　正誤判定：×");
-      }
-      NoQ += 1;
-    }
-    function Question() {
-      Textarea.style.display = 'block';
-      var Value = document.getElementById("Textarea");
-      var Q = document.getElementById("idName");
-      Value.value = ""
-      if (NoQ === question.length) {
-        Q.innerHTML = ""
-        Textarea.style.display = 'none';
-        for (let i = 0; i < NoQ; i++) {
-          Q.innerHTML += "<br><br>"+check[i];
-        }
-      } else {
-        Q.innerHTML = question[NoQ];
-      }
-    }
-    Question();
-  </script>
-  </div>
-  <!--追加-->
+  <iframe id="viewer" src=""></iframe>
   <script>
     const iframe = document.getElementById("viewer");
     function toggleHeader() {
@@ -177,18 +86,108 @@ button:hover {
     function loadHTML(file) {
       iframe.src = file;
     }
-//↓追加
-    function SocialStudies() {
-      const question = [
-    "今から約700万年から600万年前にアフリカで現れた，現在知られている最も古い人類",
-    "今から250万年ほど前，地球が寒冷化していた時代を何と呼ぶか？"
-    ];
-    const answer = [
-    "猿人",
-    "氷河時代"
-    ];
-    }
-    //↑追加
   </script>
 </body>
+</html>-->
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>クイズ</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html,body { height:100%; width:100%; }
+    body { display:flex; flex-direction:row; }
+    #menu-button {
+      position:fixed; top:1vh; left:1vw;
+      background:none; border:none; padding:0;
+      font-size:4vh; font-weight:bold;
+      z-index:1000; cursor:pointer;
+    }
+    #header-area {
+      width:20vw; min-width:120px;
+      background:#f0f0f0; padding:2vh 1vw;
+      height:100vh; box-sizing:border-box;
+    }
+    #header-area h2 { cursor:pointer; margin:2vh 0; font-size:2.5vh; }
+    #viewer {
+      flex-grow:1; height:100vh; padding-top:6vh;
+      box-sizing:border-box; display:none; /* 最初は非表示 */
+      overflow-y:auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="menu-button" onclick="toggleHeader()">≡</div>
+  <div id="header-area">
+    <div style="margin-top:6vh;">
+      <h2 onclick="SocialStudies()">社会</h2>
+      <hr>
+    </div>
+  </div>
+
+  <!-- viewer -->
+  <div id="viewer">
+    <div class="container" style="width:90%; margin:auto;">
+      <h4 id="idName"></h4>
+      <textarea id="Textarea"
+        style="width:100%; height:10em; margin:1em 0; font-size:1em;"></textarea>
+      <br>
+      <button onclick="CheckAnswer()">解答</button>
+      <button onclick="Question()">次の問題</button>
+    </div>
+  </div>
+
+<script>
+  let question = [];
+  let answer   = [];
+  const check  = [];
+  let NoQ = 0;
+
+  function toggleHeader(){
+    const header=document.getElementById('header-area');
+    header.style.display=(header.style.display==="none")?"block":"none";
+  }
+
+  function SocialStudies(){
+    question=[
+      "今から約700万年から600万年前にアフリカで現れた，現在知られている最も古い人類",
+      "今から250万年ほど前，地球が寒冷化していた時代を何と呼ぶか？"
+    ];
+    answer=["猿人","氷河時代"];
+    NoQ=0; check.length=0;
+    document.getElementById("viewer").style.display="block"; // 表示
+    Question();
+  }
+
+  function CheckAnswer(){
+    const Value=document.getElementById("Textarea");
+    const VoA=document.getElementById("idName");
+    if(Value.value===answer[NoQ]){
+      Value.style.display='none';
+      VoA.innerHTML="正解";
+      check.push(`問題：${question[NoQ]} 正答：${answer[NoQ]} 判定：⚪︎`);
+    }else{
+      Value.style.display='none';
+      VoA.innerHTML="不正解";
+      check.push(`問題：${question[NoQ]} 正答：${answer[NoQ]} 判定：×`);
+    }
+    NoQ++;
+  }
+
+  function Question(){
+    const Value=document.getElementById("Textarea");
+    const Q=document.getElementById("idName");
+    Value.style.display='block'; Value.value="";
+    if(NoQ===question.length){
+      Q.innerHTML=""; Value.style.display='none';
+      check.forEach(c=>Q.innerHTML+=`<br><br>${c}`);
+    }else{
+      Q.innerHTML=question[NoQ];
+    }
+  }
+</script>
+</body>
 </html>
+
