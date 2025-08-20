@@ -129,11 +129,55 @@
 
   <!-- viewer -->
   <div id="viewer">
-    <div class="container" style="width:90%; margin:auto;">
+    <style>
+      html {
+  font-size: calc(4vmin);
+}
+body {
+  margin: 0;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.container {
+  width: calc(100% - 20px);
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+h4 {
+  margin: 0 0 1rem 0;
+}
+textarea {
+  width: 100%;
+  font-size: 1em; /* html の font-size に比例 */
+  padding: 0.8em;
+  margin: 1em 0;
+  border-radius: 0.5em;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  height: 10em;
+  resize: vertical;
+}
+button {
+  font-size: 1em;
+  padding: 0.8em 1.5em;
+  border: none;
+  border-radius: 0.5em;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  margin-top: 1em;
+}
+button:hover {
+  background-color: #45a049;
+}
+    </style>
+    <div class="container">
       <h4 id="idName"></h4>
-      <textarea id="Textarea"
-        style="width:100%; height:10em; margin:1em 0; font-size:1em;"></textarea>
-      <br>
+      <textarea id="Textarea"></textarea><br>
       <button onclick="CheckAnswer()">解答</button>
       <button onclick="Question()">次の問題</button>
     </div>
