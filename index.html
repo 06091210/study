@@ -72,15 +72,102 @@
     <div style="margin-top: 6vh;">
       <h2 onclick="loadHTML('SocialStudies.html')">社会</h2>
       <h2 onclick="loadHTML('English.html')">英語</h2>
+      <button onclick="SocialStudies()">社会</button>
       <hr>
     </div>
   </div>
   <!--<iframe id="viewer" src=""></iframe>-->
   <!--↓追加-->
   <div id="viewer">
-    
+  <style>
+    html {
+  font-size: calc(4vmin);
+}
+body {
+  margin: 0;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.container {
+  width: calc(100% - 20px);
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+h4 {
+  margin: 0 0 1rem 0;
+}
+textarea {
+  width: 100%;
+  font-size: 1em;
+  padding: 0.8em;
+  margin: 1em 0;
+  border-radius: 0.5em;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  height: 10em;
+  resize: vertical;
+}
+button {
+  font-size: 1em;
+  padding: 0.8em 1.5em;
+  border: none;
+  border-radius: 0.5em;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  margin-top: 1em;
+}
+button:hover {
+  background-color: #45a049;
+}
+  </style>
+  <div class="container">
+  <h4 id="idName"></h4>
+  <textarea id="Textarea"></textarea>
+  <button onclick="CheckAnswer()">解答</button>
+  <button onclick="Question()">次の問題</button>
   </div>
-  <!--↑追加-->
+  <script>
+    
+    const check = [];
+    var NoQ = 0;
+    function CheckAnswer() {
+      var Value = document.getElementById("Textarea");
+      var VoA = document.getElementById("idName");
+      if (Value.value === answer[NoQ]) {
+        Textarea.style.display = 'none';
+        VoA.innerHTML = "正解";
+        check.push("問題："+question[NoQ]+" 正答："+answer[NoQ]+"　正誤判定：⚪︎");
+      } else {
+        Textarea.style.display = 'none';
+        VoA.innerHTML = "不正解";
+        check.push("問題："+question[NoQ]+" 正答："+answer[NoQ]+"　正誤判定：×");
+      }
+      NoQ += 1;
+    }
+    function Question() {
+      Textarea.style.display = 'block';
+      var Value = document.getElementById("Textarea");
+      var Q = document.getElementById("idName");
+      Value.value = ""
+      if (NoQ === question.length) {
+        Q.innerHTML = ""
+        Textarea.style.display = 'none';
+        for (let i = 0; i < NoQ; i++) {
+          Q.innerHTML += "<br><br>"+check[i];
+        }
+      } else {
+        Q.innerHTML = question[NoQ];
+      }
+    }
+    Question();
+  </script>
+  </div>
+  <!--追加-->
   <script>
     const iframe = document.getElementById("viewer");
     function toggleHeader() {
@@ -90,6 +177,18 @@
     function loadHTML(file) {
       iframe.src = file;
     }
+//↓追加
+    function SocialStudies() {
+      const question = [
+    "今から約700万年から600万年前にアフリカで現れた，現在知られている最も古い人類",
+    "今から250万年ほど前，地球が寒冷化していた時代を何と呼ぶか？"
+    ];
+    const answer = [
+    "猿人",
+    "氷河時代"
+    ];
+    }
+    //↑追加
   </script>
 </body>
 </html>
