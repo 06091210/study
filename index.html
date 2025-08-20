@@ -96,24 +96,50 @@
   <meta charset="UTF-8">
   <title>クイズ</title>
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html,body { height:100%; width:100%; }
-    body { display:flex; flex-direction:row; }
+    * {
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+    html,body {
+      height:100%;
+      width:100%;
+    }
+    body {
+      display:flex;
+      flex-direction:row;
+    }
     #menu-button {
-      position:fixed; top:1vh; left:1vw;
-      background:none; border:none; padding:0;
-      font-size:4vh; font-weight:bold;
-      z-index:1000; cursor:pointer;
+      position:fixed;
+      top:1vh;
+      left:1vw;
+      background:none;
+      border:none;
+      padding:0;
+      font-size:4vh;
+      font-weight:bold;
+      z-index:1000;
+      cursor:pointer;
     }
     #header-area {
-      width:20vw; min-width:120px;
-      background:#f0f0f0; padding:2vh 1vw;
-      height:100vh; box-sizing:border-box;
+      width:20vw;
+      min-width:120px;
+      background:#f0f0f0;
+      padding:2vh 1vw;
+      height:100vh;
+      box-sizing:border-box;
     }
-    #header-area h2 { cursor:pointer; margin:2vh 0; font-size:2.5vh; }
+    #header-area h2 {
+      cursor:pointer;
+      margin:2vh 0;
+      font-size:2.5vh;
+    }
     #viewer {
-      flex-grow:1; height:100vh; padding-top:6vh;
-      box-sizing:border-box; display:none; /* 最初は非表示 */
+      flex-grow:1;
+      height:100vh;
+      padding-top:6vh;
+      box-sizing:border-box;
+      display:none; /* 最初は非表示 */
       overflow-y:auto;
     }
   </style>
@@ -152,7 +178,7 @@ h4 {
 }
 textarea {
   width: 100%;
-  font-size: 1em; /* html の font-size に比例 */
+  font-size: 1em;
   padding: 0.8em;
   margin: 1em 0;
   border-radius: 0.5em;
@@ -177,7 +203,7 @@ button:hover {
     </style>
     <div class="container">
       <h4 id="idName"></h4>
-      <textarea id="Textarea"></textarea><br>
+      <textarea id="Textarea"></textarea>
       <button onclick="CheckAnswer()">解答</button>
       <button onclick="Question()">次の問題</button>
     </div>
@@ -199,8 +225,12 @@ button:hover {
       "今から約700万年から600万年前にアフリカで現れた，現在知られている最も古い人類",
       "今から250万年ほど前，地球が寒冷化していた時代を何と呼ぶか？"
     ];
-    answer=["猿人","氷河時代"];
-    NoQ=0; check.length=0;
+    answer=[
+      "猿人",
+      "氷河時代"
+    ];
+    NoQ=0;
+    check.length=0;
     document.getElementById("viewer").style.display="block"; // 表示
     Question();
   }
