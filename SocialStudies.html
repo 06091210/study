@@ -113,11 +113,11 @@ button:hover {
       if (Value.value === answer[NoQ]) {
         Textarea.style.display = 'none';//←追加
         VoA.innerHTML = "正解";
-        check.push(question[NoQ]+"⚪︎");//←追加
+        check.push("問題："+question[NoQ]+" 正答："+answer[NoQ]+"　正誤判定：⚪︎");//←追加
       } else {
         Textarea.style.display = 'none';//←追加
         VoA.innerHTML = "不正解";
-        check.push(question[NoQ]+"×");//←追加
+        check.push("問題："+question[NoQ]+" 正答："+answer[NoQ]+"　正誤判定：×");//←追加
       }
       NoQ += 1;
     }
@@ -126,11 +126,12 @@ button:hover {
       var Value = document.getElementById("Textarea");
       var Q = document.getElementById("idName");
       Value.value = ""
-      //↓変更　from Q.innerHTML = question[NoQ];
-      if (NoQ === question.length+1) {
+      //↓変更　From Q.innerHTML = question[NoQ];
+      if (NoQ === question.length) {
         Q.innerHTML = ""
+        Textarea.style.display = 'none';
         for (let i = 0; i < NoQ; i++) {
-          Q.innerHTML += "<br>"+check[i];
+          Q.innerHTML += "<br><br>"+check[i];
         }
       } else {
         Q.innerHTML = question[NoQ];
