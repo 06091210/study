@@ -97,51 +97,65 @@
   <title>クイズ</title>
   <style>
     * {
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html, body {
+    height: 100%;
+    width: 100%;
+  }
+  body {
+    display: flex;
+    flex-direction: row;
+  }
+  #menu-button {
+    position: fixed;
+    top: 1vh;
+    left: 1vw;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 4vh;
+    font-weight: bold;
+    z-index: 1000;
+    cursor: pointer;
+  }
+  #header-area {
+    width: 20vw;
+    min-width: 120px;
+    background-color: #f0f0f0;
+    padding: 2vh 1vw;
+    height: 100vh;
+    box-sizing: border-box;
+  }
+  #header-area h2 {
+    cursor: pointer;
+    margin: 2vh 0;
+    font-size: 2.5vh;
+  }
+  hr {
+    margin-top: 2vh;
+  }
+    #viewer {
+      flex-grow: 1;
+      border: none;
+      height: 100vh;
+      padding-top: 6vh;
+      box-sizing: border-box;
+      display:none; /* 最初は非表示 */
     }
-    html,body {
-      height:100%;
-      width:100%;
-    }
-    body {
-      display:flex;
-      flex-direction:row;
+  @media (max-width: 600px) {
+    #header-area {
+      width: 50vw;
     }
     #menu-button {
-      position:fixed;
-      top:1vh;
-      left:1vw;
-      background:none;
-      border:none;
-      padding:0;
-      font-size:4vh;
-      font-weight:bold;
-      z-index:1000;
-      cursor:pointer;
-    }
-    #header-area {
-      width:20vw;
-      min-width:120px;
-      background:#f0f0f0;
-      padding:2vh 1vw;
-      height:100vh;
-      box-sizing:border-box;
+      font-size: 5vh;
     }
     #header-area h2 {
-      cursor:pointer;
-      margin:2vh 0;
-      font-size:2.5vh;
+      font-size: 3vh;
     }
-    #viewer {
-      flex-grow:1;
-      height:100vh;
-      padding-top:6vh;
-      box-sizing:border-box;
-      display:none; /* 最初は非表示 */
-      overflow-y:auto;
-    }
+  }
   </style>
 </head>
 <body>
@@ -152,7 +166,6 @@
       <hr>
     </div>
   </div>
-
   <!-- viewer -->
   <div id="viewer">
     <style>
