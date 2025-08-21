@@ -1,95 +1,3 @@
-<!--<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>クイズ</title>
-  <link rel="apple-touch-icon" href="IMG_6612.jpeg">
-  <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  html, body {
-    height: 100%;
-    width: 100%;
-  }
-  body {
-    display: flex;
-    flex-direction: row;
-  }
-  #menu-button {
-    position: fixed;
-    top: 1vh;
-    left: 1vw;
-    background: none;
-    border: none;
-    padding: 0;
-    font-size: 4vh;
-    font-weight: bold;
-    z-index: 1000;
-    cursor: pointer;
-  }
-  #header-area {
-    width: 20vw;
-    min-width: 120px;
-    background-color: #f0f0f0;
-    padding: 2vh 1vw;
-    height: 100vh;
-    box-sizing: border-box;
-  }
-  #header-area h2 {
-    cursor: pointer;
-    margin: 2vh 0;
-    font-size: 2.5vh;
-  }
-  hr {
-    margin-top: 2vh;
-  }
-    #viewer {
-      flex-grow: 1;
-      border: none;
-      height: 100vh;
-      padding-top: 6vh;
-      box-sizing: border-box;
-    }
-  @media (max-width: 600px) {
-    #header-area {
-      width: 50vw;
-    }
-    #menu-button {
-      font-size: 5vh;
-    }
-    #header-area h2 {
-      font-size: 3vh;
-    }
-  }
-</style>
-</head>
-<body>
-  <div id="menu-button" onclick="toggleHeader()">≡</div>
-  <div id="header-area">
-    <div style="margin-top: 6vh;">
-      <h2 onclick="loadHTML('SocialStudies.html')">社会</h2>
-      <h2 onclick="loadHTML('English.html')">英語</h2>
-      <button onclick="SocialStudies()">社会</button>
-      <hr>
-    </div>
-  </div>
-  <iframe id="viewer" src=""></iframe>
-  <script>
-    const iframe = document.getElementById("viewer");
-    function toggleHeader() {
-      const header = document.getElementById('header-area');
-      header.style.display = (header.style.display === "none") ? "block" : "none";
-    }
-    function loadHTML(file) {
-      iframe.src = file;
-    }
-  </script>
-</body>
-</html>-->
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -143,7 +51,7 @@
       height: 100vh;
       padding-top: 6vh;
       box-sizing: border-box;
-      display:none; /* 最初は非表示 */
+      display:none;
     }
   @media (max-width: 600px) {
     #header-area {
@@ -213,18 +121,15 @@ button:hover {
       <button onclick="Question()">次の問題</button>
     </div>
   </div>
-
 <script>
   let question = [];
   let answer   = [];
   const check  = [];
   let NoQ = 0;
-
   function toggleHeader(){
     const header=document.getElementById('header-area');
     header.style.display=(header.style.display==="none")?"block":"none";
   }
-
   function SocialStudies(){
     question=[
       "今から約700万年から600万年前にアフリカで現れた，現在知られている最も古い人類",
@@ -236,10 +141,9 @@ button:hover {
     ];
     NoQ=0;
     check.length=0;
-    document.getElementById("viewer").style.display="block"; // 表示
+    document.getElementById("viewer").style.display="block";
     Question();
   }
-
   function CheckAnswer(){
     const Value=document.getElementById("Textarea");
     const VoA=document.getElementById("idName");
@@ -254,7 +158,6 @@ button:hover {
     }
     NoQ++;
   }
-
   function Question(){
     const Value=document.getElementById("Textarea");
     const Q=document.getElementById("idName");
