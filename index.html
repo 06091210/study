@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>クイズ</title>
   <link rel="apple-touch-icon" href="IMG_6612.jpeg">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4CAF50">
   <style>
     * {
     margin: 0;
@@ -281,6 +283,11 @@ button:hover {
     }else{
       Q.innerHTML=question[NoQ];
     }
+  }
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js")
+      .then(() => console.log("Service Worker registered"))
+      .catch(err => console.error("SW registration failed", err));
   }
 </script>
 </body>
