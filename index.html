@@ -345,17 +345,6 @@ button:hover {
       margin-top: 2vh;
     }
 
-#viewer {
-  display: flex;
-  justify-content: center; /* 横中央 */
-  align-items: center;     /* 縦中央 */
-  height: 100vh;
-  width: 100%;
-  overflow-y: auto;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
     @media (max-width: 600px) {
       #header-area {
         width: 50vw;
@@ -372,12 +361,28 @@ button:hover {
   font-family: Arial, sans-serif;
 }
 
+#viewer {
+  display: flex;
+  justify-content: center; /* 横中央 */
+  align-items: center;     /* 縦中央 */
+  height: 100vh;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;        /* スクロールで上寄せされるのを防ぐ */
+}
+
 .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 子要素を縦中央に配置 */
+  align-items: center;
+  height: 100%;            /* #viewer の高さに合わせる */
   max-width: 800px;
   width: 100%;
-  margin: 0 auto;
   text-align: center;
-  padding: 50px 20px;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .quiz-info {
