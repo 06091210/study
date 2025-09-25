@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -77,7 +77,7 @@
       <hr>
     </div>
   </div>
-  <!-- viewer -->
+  <!-- viewer 
   <div id="viewer">
     <style>
       html {
@@ -292,4 +292,94 @@ button:hover {
 </script>
 </body>
 </html>
+-->
 
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>クイズ</title>
+  <link rel="apple-touch-icon" href="IMG_6612.jpeg">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4CAF50">
+  <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html, body {
+    height: 100%;
+    width: 100%;
+  }
+  body {
+    display: flex;
+    flex-direction: row;
+  }
+  #menu-button {
+    position: fixed;
+    top: 1vh;
+    left: 1vw;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 4vh;
+    font-weight: bold;
+    z-index: 1000;
+    cursor: pointer;
+  }
+  #header-area {
+    width: 20vw;
+    min-width: 120px;
+    background-color: #f0f0f0;
+    padding: 2vh 1vw;
+    height: 100vh;
+    box-sizing: border-box;
+  }
+  #header-area h2 {
+    cursor: pointer;
+    margin: 2vh 0;
+    font-size: 2.5vh;
+  }
+  hr {
+    margin-top: 2vh;
+  }
+    #viewer {
+      flex-grow: 1;
+      border: none;
+      height: 100vh;
+      padding-top: 6vh;
+      box-sizing: border-box;
+      display:none;
+    }
+  @media (max-width: 600px) {
+    #header-area {
+      width: 50vw;
+    }
+    #menu-button {
+      font-size: 5vh;
+    }
+    #header-area h2 {
+      font-size: 3vh;
+    }
+  }
+  </style>
+</head>
+<body>
+  <div id="menu-button" onclick="toggleHeader()">≡</div>
+  <div id="header-area">
+    <div style="margin-top:6vh;">
+      <h2 onclick="Quiz('SocialStudies')">社会</h2>
+      <hr>
+    </div>
+  </div>
+  <div id="viewer"></div>
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js")
+      .then(() => console.log("Service Worker registered"))
+      .catch(err => console.error("SW registration failed", err));
+  }
+</script>
+</body>
+</html>
