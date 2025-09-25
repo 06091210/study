@@ -303,164 +303,158 @@ button:hover {
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#4CAF50">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html, body {
-      height: 100%;
-      width: 100%;
-    }
-    body {
-      display: flex;
-      flex-direction: row;
-    }
-    #menu-button {
-      position: fixed;
-      top: 1vh;
-      left: 1vw;
-      background: none;
-      border: none;
-      padding: 0;
-      font-size: 4vh;
-      font-weight: bold;
-      z-index: 1000;
-      cursor: pointer;
-    }
-    #header-area {
-      width: 20vw;
-      min-width: 120px;
-      background-color: #f0f0f0;
-      padding: 2vh 1vw;
-      height: 100vh;
-      box-sizing: border-box;
-    }
-    #header-area h2 {
-      cursor: pointer;
-      margin: 2vh 0;
-      font-size: 2.5vh;
-    }
-    hr {
-      margin-top: 2vh;
-    }
-    #viewer {
-      flex-grow: 1;
-      border: none;
-      height: 100vh;
-      padding-top: 6vh;
-      box-sizing: border-box;
-      display: none; /* 最初は隠す */
-    }
-    @media (max-width: 600px) {
-      #header-area {
-        width: 50vw;
-      }
-      #menu-button {
-        font-size: 5vh;
-      }
-      #header-area h2 {
-        font-size: 3vh;
-      }
-    }
+    /* --- クイズ全体スタイル --- */
+#viewer body {
+  font-family: Arial, sans-serif;
+}
 
-    /* --- クイズ用スタイル --- */
-    #viewer body { font-family: Arial, sans-serif; }
-    .container {
-      max-width: 800px;
-      width: 100%;
-      margin: 0 auto;
-      text-align: center;
-      padding: 50px;
-    }
-    .quiz-info {
-      font-size: 1.2rem;
-      color: white;
-      margin-bottom: 20px;
-      max-width: 100px;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 5px;
-      border: 2px solid #333;
-      border-radius: 5px;
-      background-color: dimgrey;
-    }
-    .quiz-container,
-    .result-section,
-    .final-section {
-      display: none;
-      margin: 20px auto;
-    }
-    .question-number {
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-    .question {
-      font-weight: bold;
-      margin-bottom: 10px;
-      padding: 15px;
-      border: 2px solid black;
-      border-radius: 10px;
-      box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
-      background-color: #ffffff;
-    }
-    .grid-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-gap: 10px;
-    }
-    .choice {
-      padding: 15px;
-      background-color: #ffffff;
-      text-align: center;
-      cursor: pointer;
-      border: 2px solid black;
-      border-radius: 10px;
-      box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
-      transition: background-color 0.3s;
-    }
-    .choice:hover {
-      background-color: #d0d0d0;
-    }
-    .result-section {
-      padding: 20px;
-      border: 2px solid black;
-      border-radius: 10px;
-      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-      background-color: #f1f1f1;
-    }
-    #answer-result {
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
-    .correct { color: green; }
-    .wrong { color: red; }
-    #next-question, #restart-quiz {
-      margin-top: 20px;
-      padding: 10px;
-      background-color: #e0e0e0;
-      text-align: center;
-      cursor: pointer;
-      border: 2px solid black;
-      border-radius: 10px;
-      box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
-      transition: background-color 0.3s;
-      max-width: 300px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    #next-question:hover, #restart-quiz:hover {
-      background-color: #d0d0d0;
-    }
-    .final-section {
-      padding: 20px;
-      border: 2px solid black;
-      border-radius: 10px;
-      box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
-      background-color: #f9f9f9;
-      margin: 20px auto;
-      max-width: 800px;
-    }
+.container {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.quiz-info {
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 20px;
+  padding: 8px 12px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  background-color: dimgrey;
+  display: inline-block;
+}
+
+.quiz-container,
+.result-section,
+.final-section {
+  display: none;
+  margin: 20px auto;
+}
+
+.question-number {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.question {
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+  background-color: #ffffff;
+  text-align: center;
+  font-size: 2rem; /* PC用 */
+}
+
+/* 選択肢グリッド */
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 15px;
+  justify-items: center;
+}
+
+.choice {
+  padding: 20px;
+  background-color: #ffffff;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+  font-size: 1.5rem;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.choice:hover {
+  background-color: #d0d0d0;
+  transform: scale(1.05);
+}
+
+.result-section {
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+#answer-result {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.correct { color: green; }
+.wrong { color: red; }
+
+#next-question, #restart-quiz {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #e0e0e0;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s, transform 0.2s;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.5rem;
+}
+
+#next-question:hover, #restart-quiz:hover {
+  background-color: #d0d0d0;
+  transform: scale(1.05);
+}
+
+.final-section {
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+  background-color: #f9f9f9;
+  margin: 20px auto;
+  max-width: 800px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+/* --- スマホ用レスポンシブ --- */
+@media (max-width: 600px) {
+  .question {
+    font-size: 4vw;   /* 画面幅に合わせて自動調整 */
+    padding: 15px;
+  }
+  .question-number {
+    font-size: 3.5vw;
+    margin-bottom: 10px;
+  }
+  .choice {
+    font-size: 3.5vw;
+    padding: 15px;
+  }
+  #next-question, #restart-quiz {
+    font-size: 4vw;
+    padding: 12px;
+  }
+  .quiz-info {
+    font-size: 3.5vw;
+    padding: 6px 10px;
+  }
+  .grid-container {
+    grid-template-columns: 1fr; /* スマホでは縦並び */
+    grid-gap: 10px;
+  }
+}
   </style>
 </head>
 <body>
