@@ -362,22 +362,26 @@ button:hover {
 }
 
 #viewer {
-  display: flex;
-  justify-content: center; /* 横中央 */
-  align-items: center;     /* 縦中央 */
+  position: absolute;       /* サイドバーにかかわらず固定 */
+  top: 0;
+  left: 0;
+  width: 100%;             /* 画面幅100%を常に維持 */
   height: 100vh;
-  width: 100%;
+  display: flex;
+  justify-content: center;  /* 横中央 */
+  align-items: center;      /* 縦中央 */
   padding: 20px;
   box-sizing: border-box;
-  overflow: hidden;        /* スクロールで上寄せされるのを防ぐ */
+  background: transparent;
+  overflow: hidden;
+  z-index: 1;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* 子要素を縦中央に配置 */
-  align-items: center;
-  height: 100%;            /* #viewer の高さに合わせる */
+  justify-content: center;  /* 子要素を縦中央 */
+  align-items: center;      /* 子要素を横中央 */
   max-width: 800px;
   width: 100%;
   text-align: center;
