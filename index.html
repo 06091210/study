@@ -691,73 +691,44 @@ button:hover {
   <meta name="theme-color" content="#4CAF50">
   <style>
     body {
-      font-family: "Hiragino Kaku Gothic ProN", "Segoe UI", sans-serif;
-      background: linear-gradient(180deg, #e8f5e9, #ffffff);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      padding: 1.5em;
-    }
-
-    a {
-      display: block;
-      width: 100%;
-      max-width: 400px; /* タブレット以上では中央寄せ */
+      font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+      background-color: #f0f8ff;
       text-align: center;
-      background: #4CAF50;
+      padding-top: 50px;
+    }
+    img {
+      width: 120px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 40px;
+    }
+    a {
+      display: inline-block;
+      padding: 15px 40px;
+      margin: 10px;
+      background-color: #4CAF50;
       color: white;
+      font-size: 20px;
       text-decoration: none;
-      padding: 1.2em;
-      font-size: clamp(1.2rem, 4vw, 1.8rem);
-      border-radius: 1em;
-      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-      transition: all 0.2s ease;
-      font-weight: bold;
-      letter-spacing: 0.05em;
+      border-radius: 10px;
+      transition: background-color 0.3s;
     }
-
     a:hover {
-      background: #43a047;
-      transform: translateY(-2px);
-    }
-
-    a:active {
-      background: #388e3c;
-      transform: translateY(0);
-      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
-    }
-
-    /* スマホでの最適化 */
-    @media (max-width: 480px) {
-      body {
-        padding: 2em 1em;
-      }
-      a {
-        font-size: 1.4rem;
-        padding: 1.4em;
-        border-radius: 0.8em;
-      }
-    }
-
-    /* さらに小さい画面（例：iPhone SEなど）用 */
-    @media (max-width: 360px) {
-      a {
-        font-size: 1.2rem;
-        padding: 1.3em;
-      }
+      background-color: #45a049;
     }
   </style>
 </head>
 <body>
-  <a href="https://06091210.github.io/study/SocialStudies.html">社会</a>
-<script>
-  if ("serviceWorker" in navigator) {
+  <a href="SocialStudies.html">社会</a>
+</body>
+  <script>
+    if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("service-worker.js")
       .then(() => console.log("Service Worker registered"))
       .catch(err => console.error("SW registration failed", err));
   }
-</script>
-</body>
+  </script>
 </html>
