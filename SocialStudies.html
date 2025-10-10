@@ -451,7 +451,7 @@ initQuiz();
 </body>
 </html>-->
 
-
+<!--
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -575,5 +575,171 @@ initQuiz();
     showQuestion();
   </script>
 </body>
-</html>
+</html>-->
 
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>社会クイズ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+      background-color: #fff8e1;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .question {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+    .image-container img {
+      width: 80%;
+      max-width: 400px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    /* 2×2グリッド配置 */
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    button {
+      padding: 15px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .score {
+      font-size: 26px;
+      margin-top: 30px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    a.back {
+      display: inline-block;
+      margin-top: 40px;
+      text-decoration: none;
+      font-size: 18px;
+      color: #2196F3;
+    }
+  </style>
+</head>
+<body>
+  <h1>社会クイズ</h1>
+  <div class="question" id="question">問題を読み込み中...</div>
+  <div class="image-container" id="image-container"></div>
+  <div class="choices" id="choices"></div>
+  <div class="result" id="result"></div>
+  <div class="score" id="score"></div>
+  <a class="back" href="index.html">← メニューに戻る</a>
+
+  <script>
+    // 📸 画像つき問題データ（画像は同じフォルダ内に置く）
+    const quiz = [
+      {
+        question: "この写真の都市はどこ？",
+        image: "tokyo.jpg",   // 例: 東京タワーの写真
+        choices: ["大阪", "東京", "京都", "福岡"],
+        answer: "東京"
+      },
+      {
+        question: "この川は日本で最も長い川です。名前は？",
+        image: "shinano.jpg", // 例: 信濃川の写真
+        choices: ["信濃川", "利根川", "木曽川", "石狩川"],
+        answer: "信濃川"
+      },
+      {
+        question: "この山の名前は？",
+        image: "fuji.jpg",    // 例: 富士山の写真
+        choices: ["立山", "北岳", "穂高岳", "富士山"],
+        answer: "富士山"
+      }
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    const questionEl = document.getElementById("question");
+    const imageEl = document.getElementById("image-container");
+    const choicesEl = document.getElementById("choices");
+    const resultEl = document.getElementById("result");
+    const scoreEl = document.getElementById("score");
+
+    function showQuestion() {
+      const q = quiz[current];
+      questionEl.textContent = `Q${current + 1}. ${q.question}`;
+      resultEl.textContent = "";
+      scoreEl.textContent = "";
+
+      // 画像表示
+      imageEl.innerHTML = q.image ? `<img src="${q.image}" alt="問題画像">` : "";
+
+      // 選択肢生成
+      choicesEl.innerHTML = "";
+      q.choices.forEach(choice => {
+        const btn = document.createElement("button");
+        btn.textContent = choice;
+        btn.onclick = () => checkAnswer(choice);
+        choicesEl.appendChild(btn);
+      });
+    }
+
+    function checkAnswer(choice) {
+      const correct = quiz[current].answer;
+      if (choice === correct) {
+        resultEl.textContent = "正解！🎉";
+        resultEl.style.color = "green";
+        score++;
+      } else {
+        resultEl.textContent = `不正解… 正解は「${correct}」`;
+        resultEl.style.color = "red";
+      }
+
+      current++;
+      if (current < quiz.length) {
+        setTimeout(showQuestion, 1500);
+      } else {
+        setTimeout(showScore, 1500);
+      }
+    }
+
+    function showScore() {
+      questionEl.textContent = "全問終了！";
+      imageEl.innerHTML = "";
+      choicesEl.innerHTML = "";
+      resultEl.textContent = "";
+      scoreEl.textContent = `あなたのスコア：${score} / ${quiz.length} 点`;
+    }
+
+    showQuestion();
+  </script>
+</body>
+</html>
