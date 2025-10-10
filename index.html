@@ -689,6 +689,53 @@ button:hover {
   <link rel="apple-touch-icon" href="IMG_6612.jpeg">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#4CAF50">
+  <style>
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Segoe UI", sans-serif;
+      background-color: #f0f8ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    a {
+      display: inline-block;
+      text-decoration: none;
+      color: white;
+      background: linear-gradient(135deg, #4CAF50, #45a049);
+      padding: 1em 2em;
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      border-radius: 1em;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: all 0.2s ease;
+      text-align: center;
+      user-select: none;
+    }
+
+    a:hover {
+      background: linear-gradient(135deg, #45a049, #3e8e41);
+      transform: scale(1.05);
+    }
+
+    a:active {
+      transform: scale(0.98);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    /* スマホでも余白をしっかり確保 */
+    @media (max-width: 480px) {
+      body {
+        padding: 2em;
+      }
+      a {
+        width: 100%;
+        padding: 1em;
+        font-size: 1.2rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <a href="https://06091210.github.io/study/SocialStudies.html">社会</a>
