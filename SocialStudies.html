@@ -1,10 +1,9 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>社会</title>
-    <!--<link rel="stylesheet" href="styles.css">-->
     <style>
         body {
   font-family: Arial, sans-serif;
@@ -450,4 +449,131 @@ function restartQuiz() {
 initQuiz();
     </script>
 </body>
+</html>-->
+
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>社会クイズ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+      background-color: #fff8e1;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 30px;
+    }
+    .question {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    button {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    a.back {
+      display: inline-block;
+      margin-top: 40px;
+      text-decoration: none;
+      font-size: 18px;
+      color: #2196F3;
+    }
+  </style>
+</head>
+<body>
+  <h1>社会クイズ</h1>
+  <div class="question" id="question">問題を読み込み中...</div>
+  <div id="choices"></div>
+  <div class="result" id="result"></div>
+  <a class="back" href="index.html">← メニューに戻る</a>
+
+  <script>
+    // 問題データ（ローカルで完結）
+    const quiz = [
+      {
+        question: "日本の首都はどこ？",
+        choices: ["大阪", "東京", "京都", "札幌"],
+        answer: "東京"
+      },
+      {
+        question: "日本で一番長い川は？",
+        choices: ["信濃川", "利根川", "木曽川", "石狩川"],
+        answer: "信濃川"
+      },
+      {
+        question: "日本で一番高い山は？",
+        choices: ["北岳", "立山", "富士山", "穂高岳"],
+        answer: "富士山"
+      }
+    ];
+
+    let current = 0;
+    const questionEl = document.getElementById("question");
+    const choicesEl = document.getElementById("choices");
+    const resultEl = document.getElementById("result");
+
+    function showQuestion() {
+      const q = quiz[current];
+      questionEl.textContent = q.question;
+      choicesEl.innerHTML = "";
+
+      q.choices.forEach(choice => {
+        const btn = document.createElement("button");
+        btn.textContent = choice;
+        btn.onclick = () => checkAnswer(choice);
+        choicesEl.appendChild(btn);
+      });
+    }
+
+    function checkAnswer(choice) {
+      const correct = quiz[current].answer;
+      if (choice === correct) {
+        resultEl.textContent = "正解！🎉";
+        resultEl.style.color = "green";
+      } else {
+        resultEl.textContent = "不正解… 正解は「" + correct + "」";
+        resultEl.style.color = "red";
+      }
+
+      current++;
+      if (current < quiz.length) {
+        setTimeout(() => {
+          resultEl.textContent = "";
+          showQuestion();
+        }, 1500);
+      } else {
+        setTimeout(() => {
+          questionEl.textContent = "全問終了！お疲れさま！";
+          choicesEl.innerHTML = "";
+          resultEl.textContent = "";
+        }, 1500);
+      }
+    }
+
+    showQuestion();
+  </script>
+</body>
 </html>
+
