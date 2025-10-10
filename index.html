@@ -692,47 +692,60 @@ button:hover {
   <style>
     body {
       font-family: "Hiragino Kaku Gothic ProN", "Segoe UI", sans-serif;
-      background-color: #f0f8ff;
+      background: linear-gradient(180deg, #e8f5e9, #ffffff);
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
+      padding: 1.5em;
     }
 
     a {
-      display: inline-block;
-      text-decoration: none;
-      color: white;
-      background: linear-gradient(135deg, #4CAF50, #45a049);
-      padding: 1em 2em;
-      font-size: clamp(1rem, 3vw, 1.5rem);
-      border-radius: 1em;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      transition: all 0.2s ease;
+      display: block;
+      width: 100%;
+      max-width: 400px; /* タブレット以上では中央寄せ */
       text-align: center;
-      user-select: none;
+      background: #4CAF50;
+      color: white;
+      text-decoration: none;
+      padding: 1.2em;
+      font-size: clamp(1.2rem, 4vw, 1.8rem);
+      border-radius: 1em;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+      transition: all 0.2s ease;
+      font-weight: bold;
+      letter-spacing: 0.05em;
     }
 
     a:hover {
-      background: linear-gradient(135deg, #45a049, #3e8e41);
-      transform: scale(1.05);
+      background: #43a047;
+      transform: translateY(-2px);
     }
 
     a:active {
-      transform: scale(0.98);
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      background: #388e3c;
+      transform: translateY(0);
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
     }
 
-    /* スマホでも余白をしっかり確保 */
+    /* スマホでの最適化 */
     @media (max-width: 480px) {
       body {
-        padding: 2em;
+        padding: 2em 1em;
       }
       a {
-        width: 100%;
-        padding: 1em;
+        font-size: 1.4rem;
+        padding: 1.4em;
+        border-radius: 0.8em;
+      }
+    }
+
+    /* さらに小さい画面（例：iPhone SEなど）用 */
+    @media (max-width: 360px) {
+      a {
         font-size: 1.2rem;
+        padding: 1.3em;
       }
     }
   </style>
