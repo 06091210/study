@@ -1,6 +1,7 @@
 const CACHE_NAME = "quiz-app-v1";
 const urlsToCache = [
   "./index.html",
+  "./SocialStudies.html"
   "./manifest.json",
   "./IMG_6612.jpeg"
 ];
