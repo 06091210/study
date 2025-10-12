@@ -34,31 +34,48 @@ self.addEventListener("activate", event => {
   );
 });
 */
-const CACHE_NAME = "quiz-app-v1";
+// service-worker.js
+
+const CACHE_NAME = "quiz-app-cache-v1";
 const urlsToCache = [
-  "/", // index.html のパス
-  "index.html",
-  "SocialStudies.html",
-  "IMG_6612.jpeg",
-  "manifest.json",
-  "style.css",
-  "script.js"
-  // 他に必要な画像や音声ファイルもここに追加！
+  "./",
+  "./index.html",
+  "./SocialStudies.html",
+  "./IMG_6612.jpeg",
+  "./manifest.json",
 ];
 
+// インストール時にキャッシュ
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll(urlsToCache);
     })
   );
+  self.skipWaiting();
 });
 
+// リクエスト時にキャッシュを返す
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
       // キャッシュがあればそれを返し、なければネットワークから取得
       return response || fetch(event.request);
+    })
+  );
+});
+
+// 古いキャッシュを削除
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((name) => {
+          if (name !== CACHE_NAME) {
+            return caches.delete(name);
+          }
+        })
+      );
     })
   );
 });
