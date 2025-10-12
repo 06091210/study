@@ -650,6 +650,35 @@ initQuiz();
       font-size: 18px;
       color: #2196F3;
     }
+
+    /* ⭕️❌ポップアップ用 */
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.5);
+      font-size: 120px;
+      opacity: 0;
+      z-index: 9999;
+      pointer-events: none;
+      animation: popupAnim 0.8s ease-out forwards;
+      text-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    .popup.correct {
+      color: red;
+    }
+
+    .popup.wrong {
+      color: #2196F3; /* 青色 */
+    }
+
+    @keyframes popupAnim {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+      40% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+      70% { transform: translate(-50%, -50%) scale(1); }
+      100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+    }
   </style>
 </head>
 <body>
@@ -662,23 +691,23 @@ initQuiz();
   <a class="back" href="index.html">← メニューに戻る</a>
 
   <script>
-    // 📸 画像つき問題データ（画像は同じフォルダ内に置く）
+    // 📸 画像つき問題データ
     const quiz = [
       {
         question: "この写真の都市はどこ？",
-        image: "tokyo.jpg",   // 例: 東京タワーの写真
+        image: "tokyo.jpg",
         choices: ["大阪", "東京", "京都", "福岡"],
         answer: "東京"
       },
       {
         question: "この川は日本で最も長い川です。名前は？",
-        image: "shinano.jpg", // 例: 信濃川の写真
+        image: "shinano.jpg",
         choices: ["信濃川", "利根川", "木曽川", "石狩川"],
         answer: "信濃川"
       },
       {
         question: "この山の名前は？",
-        image: "fuji.jpg",    // 例: 富士山の写真
+        image: "fuji.jpg",
         choices: ["立山", "北岳", "穂高岳", "富士山"],
         answer: "富士山"
       }
@@ -699,10 +728,8 @@ initQuiz();
       resultEl.textContent = "";
       scoreEl.textContent = "";
 
-      // 画像表示
       imageEl.innerHTML = q.image ? `<img src="${q.image}" alt="問題画像">` : "";
 
-      // 選択肢生成
       choicesEl.innerHTML = "";
       q.choices.forEach(choice => {
         const btn = document.createElement("button");
@@ -712,9 +739,19 @@ initQuiz();
       });
     }
 
+    function showPopup(isCorrect) {
+      const popup = document.createElement("div");
+      popup.className = `popup ${isCorrect ? "correct" : "wrong"}`;
+      popup.textContent = isCorrect ? "⭕️" : "❌";
+      document.body.appendChild(popup);
+      setTimeout(() => popup.remove(), 800);
+    }
+
     function checkAnswer(choice) {
       const correct = quiz[current].answer;
-      if (choice === correct) {
+      const isCorrect = choice === correct;
+
+      if (isCorrect) {
         resultEl.textContent = "正解！🎉";
         resultEl.style.color = "green";
         score++;
@@ -722,6 +759,9 @@ initQuiz();
         resultEl.textContent = `不正解… 正解は「${correct}」`;
         resultEl.style.color = "red";
       }
+
+      // ⭕️❌を表示
+      showPopup(isCorrect);
 
       current++;
       if (current < quiz.length) {
