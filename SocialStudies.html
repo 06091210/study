@@ -651,7 +651,6 @@ initQuiz();
       color: #2196F3;
     }
 
-    /* ⭕️❌ポップアップ用 */
     .popup {
       position: fixed;
       top: 50%;
@@ -670,7 +669,7 @@ initQuiz();
     }
 
     .popup.wrong {
-      color: #2196F3; /* 青色 */
+      color: #2196F3;
     }
 
     @keyframes popupAnim {
@@ -682,16 +681,15 @@ initQuiz();
   </style>
 </head>
 <body>
-  <h1>社会クイズ</h1>
+  <h1>社会</h1>
   <div class="question" id="question">問題を読み込み中...</div>
   <div class="image-container" id="image-container"></div>
   <div class="choices" id="choices"></div>
   <div class="result" id="result"></div>
   <div class="score" id="score"></div>
-  <a class="back" href="index.html">← メニューに戻る</a>
+  <a class="back" href="index.html">←メニューに戻る</a>
 
   <script>
-    // 📸 画像つき問題データ
     const quiz = [
       {
         question: "この写真の都市はどこ？",
@@ -707,7 +705,6 @@ initQuiz();
       },
       {
         question: "この山の名前は？",
-        image: "fuji.jpg",
         choices: ["立山", "北岳", "穂高岳", "富士山"],
         answer: "富士山"
       }
@@ -752,15 +749,14 @@ initQuiz();
       const isCorrect = choice === correct;
 
       if (isCorrect) {
-        resultEl.textContent = "正解！🎉";
-        resultEl.style.color = "green";
+        //resultEl.textContent = "正解！🎉";
+        //resultEl.style.color = "green";
         score++;
       } else {
-        resultEl.textContent = `不正解… 正解は「${correct}」`;
-        resultEl.style.color = "red";
+        //resultEl.textContent = `不正解… 正解は「${correct}」`;
+        //resultEl.style.color = "red";
       }
 
-      // ⭕️❌を表示
       showPopup(isCorrect);
 
       current++;
