@@ -58,12 +58,22 @@ self.addEventListener("install", (event) => {
 // リクエスト時にキャッシュを返す
 self.addEventListener("fetch", (event) => {
   event.respondWith(
-    caches.match(event.request).then((response) => {
-      // キャッシュがあればそれを返し、なければネットワークから取得
-      return response || fetch(event.request);
-    })
+    fetch(event.request)
+      .then((response) => {
+        // ネットワークから取得できたらキャッシュを更新
+        const responseClone = response.clone();
+        caches.open(CACHE_NAME).then((cache) => {
+          cache.put(event.request, responseClone);
+        });
+        return response;
+      })
+      .catch(() => {
+        // オフラインならキャッシュを使う
+        return caches.match(event.request);
+      })
   );
 });
+
 
 // 古いキャッシュを削除
 self.addEventListener("activate", (event) => {
