@@ -694,41 +694,62 @@ button:hover {
       font-family: "Hiragino Kaku Gothic ProN", sans-serif;
       background-color: #f0f8ff;
       text-align: center;
-      padding-top: 50px;
+      padding-top: 5vh;
     }
+
     img {
-      width: 120px;
-      border-radius: 15px;
-      margin-bottom: 20px;
+      width: 15vw; /* 画面幅の15% */
+      border-radius: 1.5vw;
+      margin-bottom: 3vh;
     }
+
     h1 {
       color: #333;
-      margin-bottom: 40px;
+      margin-bottom: 5vh;
+      font-size: 4vw;
     }
+
     a {
       display: inline-block;
-      padding: 15px 40px;
-      margin: 10px;
+      padding: 2vh 5vw; /* 画面比率に応じて変化 */
+      margin: 2vh;
       background-color: #4CAF50;
       color: white;
-      font-size: 20px;
+      font-size: 3vw; /* 画面幅に応じて文字サイズ変化 */
       text-decoration: none;
-      border-radius: 10px;
-      transition: background-color 0.3s;
+      border-radius: 2vw;
+      transition: background-color 0.3s, transform 0.2s;
     }
+
     a:hover {
       background-color: #45a049;
+      transform: scale(1.05);
+    }
+
+    /* 最大・最小サイズの制限（小さい画面で潰れないように） */
+    @media (min-width: 768px) {
+      a {
+        font-size: 1.5vw;
+      }
+    }
+
+    @media (max-width: 400px) {
+      a {
+        font-size: 5vw;
+        padding: 3vh 8vw;
+      }
     }
   </style>
 </head>
 <body>
   <a href="SocialStudies.html">社会</a>
-</body>
+
   <script>
     if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("service-worker.js")
-      .then(() => console.log("Service Worker registered"))
-      .catch(err => console.error("SW registration failed", err));
-  }
+      navigator.serviceWorker.register("service-worker.js")
+        .then(() => console.log("Service Worker registered"))
+        .catch(err => console.error("SW registration failed", err));
+    }
   </script>
+</body>
 </html>
