@@ -761,18 +761,16 @@ initQuiz();
     function checkAnswer(choice) {
       const correct = quiz[current].answer;
       const isCorrect = choice === correct;
-
+        showPopup(isCorrect);
       if (isCorrect) {
         //resultEl.textContent = "正解！🎉";
         //resultEl.style.color = "green";
         score++;
-      } else {
-        //resultEl.textContent = `不正解… 正解は「${correct}」`;
-        //resultEl.style.color = "red";
-          return;
-      }
-
-      showPopup(isCorrect);
+      } 
+      /*else {
+        resultEl.textContent = `不正解… 正解は「${correct}」`;
+        resultEl.style.color = "red";
+      }*/
 
       current++;
       if (current < quiz.length) {
